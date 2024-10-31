@@ -1,0 +1,111 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #484848;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.logo img {
+    height: 40px;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #484848;
+}
+
+main {
+    margin-top: 80px; /* To account for the fixed header */
+}
+
+.property-status {
+    background-color: #1e8cb6;
+    color: white;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.image-carousel {
+    width: 100%;
+    height: calc(100vh - 80px);
+    overflow: hidden;
+}
+
+.image-carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.property-details {
+    float: left;
+    width: 60%;
+    padding: 20px;
+}
+
+.booking-form {
+    float: right;
+    width: 35%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.property-info span {
+    margin-right: 20px;
+}
+
+.booking-form input,
+.booking-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.booking-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.booking-form button:hover {
+    background-color: #128C7E;
+}
+
+@media (max-width: 768px) {
+    .property-details,
+    .booking-form {
+        float: none;
+        width: 100%;
+    }
+}

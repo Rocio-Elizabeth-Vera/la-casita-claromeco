@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Casita - Claromecó Alquileres</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 100px);
+            overflow: hidden;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+        }
+        .carousel-control.prev { left: 10px; }
+        .carousel-control.next { right: 10px; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="py-4">
+            <img src="img/logo.jpeg" alt="La casita" class="h-12">
+        </header>
+        
+        <div class="carousel mb-8">
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img src="img/casita-perfil.jpeg" alt="Casa perfil">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/patio.jpeg" alt="patio">
+                </div>
+            </div>
+            <a href="#" class="carousel-control prev">&lt;</a>
+            <a href="#" class="carousel-control next">&gt;</a>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            <div class="property-details md:w-2/3">
+                <h1 class="text-3xl font-bold mb-4">La Casita</h1>
+                <div class="property-info flex flex-wrap gap-4 mb-4 items-center">
+                    <span class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46.999 46.999" class="w-6 h-6 mr-2">
+                            <path d="M39,14.999c0-0.329-0.161-0.637-0.433-0.823l-14.5-10c-0.342-0.236-0.793-0.236-1.135,0l-14.5,10   C8.161,14.363,8,14.67,8,14.999v30H6v2h3h6h6h17h3v-2h-2V14.999z M16,44.999v-9h4v9H16z M22,44.999v-10c0-0.553-0.447-1-1-1h-6   c-0.553,0-1,0.447-1,1v10h-4V15.525l13.5-9.311L37,15.525v29.475H22z"></path>
+                        </svg>
+                        Casa
+                    </span>
+                    <span class="property-header-separator">|</span>
+                    <span class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-6 h-6 mr-2">
+                            <path d="M111.13672,158.97681a56.00028,56.00028,0,1,0-46.27246-.00025,92.23328,92.23328,0,0,0-52.13867,36.11719,3.99985,3.99985,0,1,0,6.541,4.60547A84.01746,84.01746,0,0,1,156.73,199.69434a4.00014,4.00014,0,0,0,6.541-4.60645A92.23237,92.23237,0,0,0,111.13672,158.97681ZM40.00049,108a48,48,0,1,1,48,48A48.05436,48.05436,0,0,1,40.00049,108Zm203.82519,92.66162a3.99923,3.99923,0,0,1-5.57373-.96728A84.17363,84.17363,0,0,0,169.522,164a4,4,0,0,1,0-8,48,48,0,1,0-13.02636-94.2124,4,4,0,1,1-2.166-7.70117A55.99661,55.99661,0,0,1,192.6582,158.97681,92.23507,92.23507,0,0,1,244.793,195.08789,4.0002,4.0002,0,0,1,243.82568,200.66162Z"></path>
+                        </svg>
+                        4 Huéspedes
+                    </span>
+                    <span class="property-header-separator">|</span>
+                    <span class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-6 h-6 mr-2">
+                            <path d="M31 29h-2.961l-1.304-1.903H5.265L3.961 29H1V16.951h2.092l1.951-8.244h2.478c0-1.046.881-1.903 1.957-1.903h5.217c.5 0 .958.185 1.305.488a1.98 1.98 0 0 1 1.305-.488h5.217c1.076 0 1.956.857 1.956 1.903h2.478l1.952 8.244H31ZM14.695 11.878H9.478c-1.076 0-1.957-.856-1.957-1.903H6.086l-1.659 6.976h23.145l-1.659-6.976h-1.435c0 1.047-.88 1.903-1.956 1.903h-5.217c-.5 0-.958-.185-1.305-.488a1.98 1.98 0 0 1-1.305.488Zm14.048 15.853h.953v-9.512H2.304v9.512h.952l1.305-1.902h22.871Zm.953-15.219h-1.305V4.268H3.609v8.244H2.304V3h27.392ZM9.478 8.073a.646.646 0 0 0-.653.634v1.268c0 .349.294.634.653.634h5.217a.645.645 0 0 0 .652-.634V8.707a.645.645 0 0 0-.652-.634Zm7.827 0a.646.646 0 0 0-.653.634v1.268c0 .349.294.634.653.634h5.217a.645.645 0 0 0 .652-.634V8.707a.645.645 0 0 0-.652-.634Z"></path>
+                        </svg>
+                        2 Habitaciones
+                    </span>
+                    <span class="property-header-separator">|</span>
+                    <span class="flex items-center">
+                        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2">
+                            <path d="M411.619,218.98H215.09V42.171C215.081,18.88,196.218,0,172.919,0h-67.663C81.964,0,63.093,18.871,63.084,42.171v229.944v4.302V512h255.924v-65.739c14.477-3.882,28.568-11.141,41.86-20.871c15.452-11.335,29.887-25.77,42.557-41.658l0.017-0.025c13.141-16.612,24.384-34.828,32.441-53.161c8.041-18.334,12.964-36.785,13.032-54.102v-0.026v-4.302v-15.847C448.908,235.666,432.212,218.98,411.619,218.98z M80.292,42.171c0.025-12.058,8.57-22.116,19.939-24.45c1.621-0.336,3.302-0.513,5.024-0.513h67.663c13.788,0.016,24.938,11.174,24.963,24.963v194.016v35.928H80.292V42.171z M431.372,281.047c-0.194,3.286-0.588,6.663-1.193,10.142c-0.034,0.194-0.076,0.387-0.109,0.588c-2.588,14.435-8.553,30.332-16.947,46.078c-0.605,1.109-1.278,2.218-1.899,3.327c-1.538,2.773-3.084,5.529-4.764,8.276c-2.302,3.73-4.73,7.428-7.26,11.074c-0.143,0.201-0.261,0.412-0.404,0.614c-2.823,4.032-5.78,8.008-8.848,11.881l0.042-0.05c-0.008,0.017-0.025,0.033-0.034,0.042c-0.009,0.016-0.025,0.025-0.034,0.042c-8.764,10.981-18.401,21.14-28.458,29.828c-0.227,0.192-0.446,0.395-0.673,0.588c-3.108,2.655-6.251,5.142-9.427,7.495c-0.369,0.286-0.748,0.571-1.125,0.84c-3.177,2.319-6.37,4.453-9.562,6.411c-0.294,0.176-0.58,0.362-0.866,0.529c-10.444,6.276-20.938,10.604-30.954,12.419l-1.689,0.302c-0.538,0.084-1.076,0.202-1.605,0.27l-3.764,0.47v0.235v62.345H80.292V280.719h351.105C431.389,280.828,431.38,280.938,431.372,281.047z M431.708,272.115H206.486v-35.928h205.133c11.09,0.016,20.073,8.999,20.089,20.081V272.115z" fill="#000000"/>
+                        </svg>
+                        2 Baños
+                    </span>
+                </div>
+                <div class="property-description">
+                    <h2 class="text-2xl font-semibold mb-2">Descripción de la propiedad</h2>
+                    <p>En Claromeco, sobre Avenida 42 y calle 21.</p>
+                    <p>Te presentamos esta casa con capacidad para 4 personas, ubicada en la esquina. Con excelente vista al mar.</p>
+                    <p>Se encuentra a apenas 50 metros de la costanera. A pasos del agua.</p>
+                    <p>La misma cuenta con: un living-comedor con sillón y área de estar con un Hogar. Cocina integrada completa con anafe, horno y microondas. Amplia mesada y lugar de guardado.</p>
+                    <p>Mesa redonda.</p>
+					<p>ㅤㅤㅤ</p>
+                    <p>Dos habitaciones.</p>
+                    <p>Una con cama matrimonial y la otra habitacion con cucheta.</p>
+                    <p>Ambas con ventilador y amplio placard.</p>
+                    <p>Baño completo.</p>
+					<p>ㅤㅤㅤ</p>
+                    <p>Posee garage con entrada vehicular. Parrilla con barra para apoyo, otra mesa y sillas.</p>
+                    <p>Matafuego para su tranquilidad.</p>
+                    <p>Lavadero y otro baño con ducha.</p>
+                    <p>Patio cerrado con juego de jardín.</p>
+					<p>ㅤㅤㅤ</p>
+                    <p>Además, cuenta con TV LED de 43", internet Wifi, heladera con freezer, cocina con cafetera eléctrica, tostadora, pava eléctrica y vajilla completa.</p>
+                    <p>El gas es de tubo.</p>
+					<p>ㅤㅤㅤ</p>	
+					<h2 class="text-2xl font-semibold mb-2">Contacto</h2>
+					<p>Gabriel +54 9 2983-504432</p>
+					<p>Monica +54 9 11 3174-1969</p>
+                </div>
+            </div>
+
+            <aside class="booking-form md:w-1/3 bg-gray-200 p-6 rounded-lg">
+                <h2 class="text-2xl font-semibold mb-4">Consultar disponibilidad</h2>
+                <form id="availability-form" class="space-y-4">
+                    <input type="text" name="name" placeholder="Su nombre" required class="w-full p-2 border rounded">
+                    <input type="date" name="dateFrom" placeholder="Desde" required class="w-full p-2 border rounded">
+                    <input type="date" name="dateTo" placeholder="Hasta" required class="w-full p-2 border rounded">
+                    <input type="number" name="guests" placeholder="Huéspedes" min="1" max="4" required class="w-full p-2 border rounded">
+                    <textarea name="comments" placeholder="Comentarios" class="w-full p-2 border rounded"></textarea>
+                    <button type="submit" class="w-full bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">Enviar Whatsapp</button>
+                </form>
+            </aside>
+        </div>
+			<div>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d776.7187880337881!2d-60.06151400884699!3d-38.85821474905738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scalle%2042%20y%2021%20Claromeco.%20Tres%20Arroyos!5e0!3m2!1ses!2sar!4v1730224587630!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel =   document.querySelector('.carousel');
+            const carouselInner = carousel.querySelector('.carousel-inner');
+            const prevBtn = carousel.querySelector('.prev');
+            const nextBtn = carousel.querySelector('.next');
+            let currentIndex = 0;
+
+            function showSlide(index) {
+                carouselInner.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            prevBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentIndex = (currentIndex - 1 + carouselInner.children.length) % carouselInner.children.length;
+                showSlide(currentIndex);
+            });
+
+            nextBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentIndex = (currentIndex + 1) % carouselInner.children.length;
+                showSlide(currentIndex);
+            });
+
+         
+			document.getElementById('availability-form').addEventListener('submit', function(e) {
+			e.preventDefault();
+		
+			var name = this.elements.name.value;
+			var dateFrom = this.elements.dateFrom.value;
+			var dateTo = this.elements.dateTo.value;
+			var guests = this.elements.guests.value;
+			var comments = this.elements.comments.value;
+
+			var message = `Hola, me interesa La Casita.\nNombre: ${name}\nDesde: ${dateFrom}\nHasta: ${dateTo}\nHuéspedes: ${guests}\nComentarios: ${comments}`;
+			var encodedMessage = encodeURIComponent(message);
+			
+			const numbers = ['5491131741969', '5491131741939'];
+
+			numbers.forEach((numbers, index) => {
+				setTimeout(() => {
+					window.open(`https://wa.me/${numbers}?text=${encodedMessage}`, '_blank');
+				}, index * 1000); // Retraso de 1 segundo entre cada apertura
+			});
+		});
+
+    });
+    </script>
+</body>
+</html>
