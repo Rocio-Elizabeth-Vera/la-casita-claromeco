@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Casita - Claromecó Alquileres</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
+<style>
         .carousel {
             position: relative;
             width: 100%;
@@ -24,24 +24,23 @@
         .carousel-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Cambia a cover para llenar el contenedor */
+            object-fit: cover;
         }
         .carousel-control {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0,0,0,0.5);
             color: white;
             padding: 10px;
             text-decoration: none;
-            border-radius: 5px;
         }
         .carousel-control.prev { left: 10px; }
         .carousel-control.next { right: 10px; }
     </style>
 </head>
 <body>
-        <div class="carousel">
+        <div class="carousel mb-8">
             <div class="carousel-inner">
                 <div class="carousel-item">
                     <img src="img/arbol.jpeg" alt="Casa arbol">
@@ -80,32 +79,10 @@
                     <img src="img/baño2.jpeg" alt="baño2">
                 </div>
             </div>
-    <a href="#" class="carousel-control prev">‹</a>
-    <a href="#" class="carousel-control next">›</a>
+            <a href="#" class="carousel-control prev">&lt;</a>
+            <a href="#" class="carousel-control next">&gt;</a>
 </div>
 
-<script>
-    let currentIndex = 0;
-    const items = document.querySelectorAll('.carousel-item');
-    const totalItems = items.length;
-
-    document.querySelector('.carousel-control.next').addEventListener('click', function(e) {
-        e.preventDefault();
-        currentIndex = (currentIndex + 1) % totalItems;
-        updateCarousel();
-    });
-
-    document.querySelector('.carousel-control.prev').addEventListener('click', function(e) {
-        e.preventDefault();
-        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-        updateCarousel();
-    });
-
-    function updateCarousel() {
-        const inner = document.querySelector('.carousel-inner');
-        inner.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-</script>
 
         <div class="flex flex-col md:flex-row gap-8">
             <div class="property-details md:w-2/3">
