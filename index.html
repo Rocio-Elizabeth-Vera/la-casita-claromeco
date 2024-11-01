@@ -17,14 +17,17 @@
             transition: transform 0.5s ease-in-out;
             height: 100%;
         }
-        .carousel-item {
-            min-width: 100%;
-            height: 100%;
-        }
+	.carousel-item {
+    		display: flex;
+    		justify-content: center; /* Centra la imagen horizontalmente */
+    		align-items: center; /* Centra la imagen verticalmente */
+    		height: 300px; /* Ajusta la altura según necesites */
+    		overflow: hidden; /* Oculta partes de la imagen que sobresalgan */
+	}
         .carousel-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
         .carousel-control {
             position: absolute;
