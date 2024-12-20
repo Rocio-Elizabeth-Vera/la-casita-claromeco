@@ -55,4 +55,38 @@ La galería de imágenes muestra:
 1. **Clona el repositorio:**
    ```bash
    git clone https://github.com/rocio-elizabeth-vera/la-casita.git
+   ```
+2. **Navega al directorio del proyecto:**
+   ```bash
+   cd la-casita
+   ```
+3. **Abre `index.html` en tu navegador preferido.**
+
+## 🌟 Contribuciones
+
+Las contribuciones son bienvenidas. Si deseas mejorar el proyecto:
+
+1. Haz un fork del repositorio.
+2. Crea una nueva rama para tus cambios:
+   ```bash
+   git checkout -b mejora/nueva-funcionalidad
+   ```
+3. Realiza tus modificaciones y haz commit de los cambios:
+   ```bash
+   git commit -m 'Agrega nueva funcionalidad'
+   ```
+4. Envía un pull request detallando tus mejoras.
+
+## 🙏 Agradecimientos
+
+Gracias a todos los que contribuyeron a hacer realidad este proyecto. A los desarrolladores que apoyaron el diseño y optimización, y a los futuros visitantes que nos inspiran a seguir mejorando.
+
+## 📞 Contacto
+
+Para consultas y reservas:
+
+- **Gabriel:** +54 9 2983-504432
+- **Mónica:** +54 9 11 3174-1969
+
+¡Esperamos que disfrutes de tu estadía en La Casita! 🏖️
 
