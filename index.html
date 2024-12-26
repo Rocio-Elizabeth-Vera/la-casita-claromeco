@@ -6,27 +6,9 @@
     <title>La Casita - Claromecó Alquileres</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script type="module" src="/index.tsx"></script>
-    <script type="module" src="/property-description.tsx"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="icon" href="img/logo.jpeg" type="image/jpeg">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Reservas</title>
-        <!-- Incluye el CSS de Flatpickr -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-        <style>
-            /* Estilos personalizados para las fechas */
-            .reserved {
-                background-color: red !important;
-                color: white;
-            }
-    
-            .selected {
-                background-color: lightblue !important;
-                color: black;
-            }
-        
-
+    <style>
         body {
             font-family: 'Poppins', sans-serif;
         }
@@ -126,6 +108,26 @@
             font-weight: bold;
             transition: 0.3s;
             z-index: 1001;
+        }
+        .flatpickr-day.reserved {
+            background-color: #ffcccb !important;
+            color: #333 !important;
+            text-decoration: line-through;
+        }
+        .flatpickr-day.selected {
+            background-color: #4299e1 !important;
+            color: white !important;
+        }
+        .flatpickr-day.selected.startRange, .flatpickr-day.selected.endRange {
+            background-color: #2b6cb0 !important;
+        }
+        #dateRangeConfirmation {
+            display: none;
+            background-color: #e6fffa;
+            border: 1px solid #4fd1c5;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            margin-top: 1rem;
         }
     </style>
 </head>
@@ -284,22 +286,19 @@
                 <form id="availability-form" class="space-y-4">
                     <input type="text" name="name" placeholder="Su nombre" required 
                            class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <input type="date" name="dateFrom" placeholder="Desde" required 
-                           id="dateFrom"
-                           class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <input type="date" name="dateTo" placeholder="Hasta" required 
-                           id="dateTo"
+                    <input type="text" name="dateRange" placeholder="Seleccione fechas" required 
+                           id="dateRange"
                            class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <input type="number" name="guests" placeholder="Huéspedes" min="1" max="4" required 
                            class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <textarea name="comments" placeholder="Comentarios" 
                               class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-32"></textarea>
+                    <div id="dateRangeConfirmation" class="text-sm text-teal-700"></div>
                     <button type="submit" class="w-full bg-green-500 text-white py-3 px-4 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">
                         Enviar Whatsapp
                     </button>
                 </form>
             </aside>
-            
         </div>
         
         <div class="mt-12">
@@ -312,17 +311,17 @@
         <img class="modal-content" id="modalImage">
     </div>
     
-        <!-- Incluye el JavaScript de Flatpickr -->
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
-        <script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
             // Fechas ocupadas
             const occupiedRanges = [
                 { start: '2024-12-20', end: '2024-12-27' },
                 { start: '2025-01-01', end: '2025-01-15' },
                 { start: '2025-02-01', end: '2025-02-07' }
             ];
-    
+
             // Genera un array con todas las fechas ocupadas
             function getOccupiedDates() {
                 const dates = [];
@@ -336,39 +335,32 @@
                 });
                 return dates;
             }
-    
+
             const occupiedDates = getOccupiedDates();
-    
-            // Inicializa el calendario de "Desde"
-            flatpickr("#dateFrom", {
+
+            // Inicializa el calendario
+            const fp = flatpickr("#dateRange", {
+                mode: "range",
+                minDate: "today",
                 locale: "es",
                 dateFormat: "Y-m-d",
-                disable: occupiedDates, // Deshabilita las fechas ocupadas
-                onChange: function (selectedDates) {
-                    const fromDate = selectedDates[0];
-                    if (fromDate) {
-                        const toDatePicker = flatpickr("#dateTo", {
-                            locale: "es",
-                            dateFormat: "Y-m-d",
-                            disable: occupiedDates, // Deshabilita las fechas ocupadas
-                            minDate: fromDate, // La fecha mínima será la seleccionada en "Desde"
-                            onDayCreate: highlightDays // Resalta días ocupados y seleccionados
-                        });
-                        toDatePicker.open(); // Abre automáticamente el siguiente calendario
+                disable: occupiedDates,
+                onDayCreate: function(dObj, dStr, fp, dayElem) {
+                    if (occupiedDates.includes(dayElem.dateObj.toISOString().split('T')[0])) {
+                        dayElem.classList.add('reserved');
                     }
                 },
-                onDayCreate: highlightDays
-            });
-    
-            // Resalta fechas ocupadas y seleccionadas
-            function highlightDays(dObj, dStr, fp, dayElem) {
-                const date = dayElem.dateObj.toISOString().split('T')[0];
-                if (occupiedDates.includes(date)) {
-                    dayElem.classList.add('reserved');
+                onChange: function(selectedDates, dateStr, instance) {
+                    if (selectedDates.length === 2) {
+                        const [start, end] = selectedDates;
+                        const confirmationDiv = document.getElementById('dateRangeConfirmation');
+                        confirmationDiv.innerHTML = `Has seleccionado desde ${start.toLocaleDateString('es-ES')} hasta ${end.toLocaleDateString('es-ES')}. ¿Estás seguro?`;
+                        confirmationDiv.style.display = 'block';
+                    }
                 }
-            }
+            });
 
-        document.addEventListener('DOMContentLoaded', function() {
+            // Carousel functionality
             const carousel = document.querySelector('.carousel');
             const carouselInner = carousel.querySelector('.carousel-inner');
             const prevBtn = carousel.querySelector('.prev');
@@ -419,26 +411,13 @@
             // Initialize first slide
             showSlide(0);
     
-            function startDrag(e) {
-                isDragging = true;
-                startX = e.clientX - translateX;
-                startY = e.clientY - translateY;
-                modalImg.style.cursor = 'grabbing';
-            }
-    
-            function drag(e) {
-                if (isDragging) {
-                    e.preventDefault();
-                    translateX = e.clientX - startX;
-                    translateY = e.clientY - startY;
-                    modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(2)`;
+            // Modal functionality
+            carouselInner.addEventListener('click', function(e) {
+                if (e.target.tagName === 'IMG') {
+                    modal.style.display = "block";
+                    modalImg.src = e.target.src;
                 }
-            }
-    
-            function endDrag() {
-                isDragging = false;
-                modalImg.style.cursor = 'grab';
-            }
+            });
     
             closeBtn.onclick = function() {
                 modal.style.display = "none";
@@ -460,86 +439,16 @@
                 });
             });
     
-            
-            const today = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
-            const dateFrom = document.getElementById('dateFrom');
-            const dateTo = document.getElementById('dateTo');
-
-            // Fechas ocupadas (rango de inicio y fin)
-            const occupiedRanges = [
-                { start: '2024-12-20', end: '2024-12-27' },
-                { start: '2025-01-01', end: '2025-01-15' },
-                { start: '2025-02-01', end: '2025-02-07' }
-            ];
-
-            // Configura la fecha mínima para el campo "Desde"
-            dateFrom.setAttribute('min', today);
-
-            // Agrega un evento al cambiar las fechas
-            dateFrom.addEventListener('change', handleDateChange);
-            dateTo.addEventListener('change', handleDateChange);
-
-            function handleDateChange() {
-                const fromDate = dateFrom.value;
-                const toDate = dateTo.value;
-
-                if (fromDate && toDate) {
-                    if (validateRange(fromDate, toDate)) {
-                        alert(`El rango del ${fromDate} al ${toDate} ya está ocupado. Por favor, elige otro.`);
-                        dateTo.value = ''; // Limpia el campo "Hasta"
-                    }
-                    highlightDates(fromDate, toDate);
-                }
-            }
-
-            // Valida si el rango está ocupado
-            function validateRange(from, to) {
-                return occupiedRanges.some(range => {
-                    return (
-                        (from >= range.start && from <= range.end) || // Desde dentro del rango
-                        (to >= range.start && to <= range.end) ||     // Hasta dentro del rango
-                        (from <= range.start && to >= range.end)      // Rango completo cubierto
-                    );
-                });
-            }
-
-            // Marca las fechas como ocupadas (rojo) y seleccionadas (azul/celeste)
-            function highlightDates(from, to) {
-                const allDates = document.querySelectorAll('input[type="date"]');
-                allDates.forEach(input => {
-                    const date = input.value;
-                    if (isDateInOccupiedRanges(date)) {
-                        input.style.backgroundColor = 'red'; // Fechas ocupadas
-                        input.setAttribute('title', 'Fecha reservada');
-                    } else if (date >= from && date <= to) {
-                        input.style.backgroundColor = 'lightblue'; // Fechas seleccionadas
-                        input.setAttribute('title', 'Rango seleccionado');
-                    } else {
-                        input.style.backgroundColor = ''; // Limpia estilos
-                        input.removeAttribute('title');
-                    }
-                });
-            }
-
-            // Comprueba si una fecha está dentro de los rangos ocupados
-            function isDateInOccupiedRanges(date) {
-                return occupiedRanges.some(range => {
-                    return date >= range.start && date <= range.end;
-                });
-            }
-        
-
             // Form submission
             document.getElementById('availability-form').addEventListener('submit', function(e) {
                 e.preventDefault();
             
                 var name = this.elements.name.value;
-                var dateFrom = this.elements.dateFrom.value;
-                var dateTo = this.elements.dateTo.value;
+                var dateRange = this.elements.dateRange.value;
                 var guests = this.elements.guests.value;
                 var comments = this.elements.comments.value;
     
-                var message = `Hola, me interesa La Casita.\nNombre: ${name}\nDesde: ${dateFrom}\nHasta: ${dateTo}\nHuéspedes: ${guests}\nComentarios: ${comments}`;
+                var message = `Hola, me interesa La Casita.\nNombre: ${name}\nFechas: ${dateRange}\nHuéspedes: ${guests}\nComentarios: ${comments}`;
                 var encodedMessage = encodeURIComponent(message);
                 
                 const numbers = ['5491131741969', '5491131741939'];
@@ -550,9 +459,6 @@
                     }, index * 1000); // Retraso de 1 segundo entre cada apertura
                 });
             });
-    
-            // Inicializar las fechas ocupadas al cargar la página
-            highlightOccupiedDates();
         });
     </script>               
 </body>
